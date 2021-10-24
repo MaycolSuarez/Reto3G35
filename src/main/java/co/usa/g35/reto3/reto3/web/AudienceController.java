@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.usa.g35.reto3.reto3.model.Auditorio;
-import co.usa.g35.reto3.reto3.service.AuditorioService;
+import co.usa.g35.reto3.reto3.model.Audience;
+import co.usa.g35.reto3.reto3.service.AudienceService;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,24 +20,24 @@ import java.util.Optional;
 @RequestMapping("/api/Audience")
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE,
         RequestMethod.PUT })
-public class AuditorioController {
+public class AudienceController {
 
     @Autowired
-    private AuditorioService auditorioService;
+    private AudienceService auditorioService;
 
     @GetMapping("/all")
-    public List<Auditorio> getAuditorios() {
+    public List<Audience> getAuditorios() {
         return auditorioService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Auditorio> getAudit(@PathVariable("id") int id) {
+    public Optional<Audience> getAudit(@PathVariable("id") int id) {
         return auditorioService.getAudit(id);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Auditorio save(@RequestBody Auditorio audit) {
+    public Audience save(@RequestBody Audience audit) {
         return auditorioService.save(audit);
     }
     

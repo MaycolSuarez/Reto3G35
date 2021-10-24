@@ -17,21 +17,25 @@ public class Reservation implements Serializable {
     private Integer idReservation;
     private Date startDate;
     private Date devolutionDate;
-
-    @ManyToOne
-    @JoinColumn(name = "client")
-    @JsonIgnoreProperties("reservations")
-    private Client client;
-
+    private String status="created";
+    
     @ManyToOne
     @JoinColumn(name = "audience")
     @JsonIgnoreProperties("reservations")
-    private Auditorio auditorio;
+    private Audience audience;
 
-    private String status;
-    @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "reservation")
-    @JsonIgnoreProperties("departamento")
-    private List<Score> scores;
+ 
+
+    @ManyToOne
+    @JoinColumn(name = "client")
+    @JsonIgnoreProperties({"reservations","messages"})
+    private Client client;
+    
+    // @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "reservation")
+    // @JsonIgnoreProperties("reservation")
+    // private List<Score> scores;
+
+    private Integer score;
 
     public String getStatus() {
         return status;
@@ -41,12 +45,12 @@ public class Reservation implements Serializable {
         this.status = status;
     }
 
-    public List<Score> getScores() {
-        return scores;
+    public Integer getScore() {
+        return score;
     }
 
-    public void setScores(List<Score> scores) {
-        this.scores = scores;
+    public void setScore(Integer score) {
+        this.score = score;
     }
 
     public Integer getIdReservation() {
@@ -81,12 +85,14 @@ public class Reservation implements Serializable {
         this.client = client;
     }
 
-    public Auditorio getAuditorio() {
-        return auditorio;
+    public Audience getAudience() {
+        return audience;
     }
 
-    public void setAuditorio(Auditorio auditorio) {
-        this.auditorio = auditorio;
+    public void setAudience(Audience audience) {
+        this.audience = audience;
     }
+
+    
 
 }

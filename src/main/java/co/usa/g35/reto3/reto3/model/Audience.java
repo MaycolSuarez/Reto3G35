@@ -8,8 +8,8 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "auditorio")
-public class Auditorio implements Serializable {
+@Table(name = "audience")
+public class Audience implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -24,12 +24,12 @@ public class Auditorio implements Serializable {
     
     
 
-    @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "auditorio")
-    @JsonIgnoreProperties("auditorio")
+    @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "audience")
+    @JsonIgnoreProperties({"audience","client"})
     private List<Message> messages;
 
-    @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "auditorio")
-    @JsonIgnoreProperties("auditorio")
+    @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "audience")
+    @JsonIgnoreProperties("audience")
     private List<Reservation> reservations;
 
     public Integer getId() {
