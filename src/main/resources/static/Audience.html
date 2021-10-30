@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auditorios</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/audience/agreAudit.js"></script>
+    <script src="js/audience/listarAudit.js"></script>
+    <script src="js/audience/deleteAudit.js"></script>
+    <script src="js/audience/editAudit.js"></script>
+</head>
+
+<body>
+    <h1>sistema de Auditorios</h1>
+    <input type="text" id="name" placeholder="Name">
+    <input type="text" id="owner" placeholder="Owner">
+    <input type="text" id="capacity" placeholder="Capacity">
+    <input type="text" id="description" placeholder="Description">
+    <input type="number" id="category_id" placeholder="Category_id">
+    <button onclick="agregar()" id="btnAgregar">Agregar</button>
+    <button onclick="listar()" id="btnListar">Listar</button>
+    <button onclick="actualizar()" id="btnGuardar">GuardarEdicion</button>
+
+    <div id="listado"></div>
+
+    <div>
+        <a href="/clientes.html">Clientes</a>
+        <a href="/mensajes.html">mensajes</a>
+    </div>
+</body>
+
+</html>

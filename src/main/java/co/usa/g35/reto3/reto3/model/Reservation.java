@@ -2,7 +2,7 @@ package co.usa.g35.reto3.reto3.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+//import java.util.List;
 
 import javax.persistence.*;
 

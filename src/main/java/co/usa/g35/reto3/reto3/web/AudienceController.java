@@ -23,7 +23,7 @@ import java.util.Optional;
 public class AudienceController {
 
     @Autowired
-    private AudienceService auditorioService;
+    AudienceService auditorioService;
 
     @GetMapping("/all")
     public List<Audience> getAuditorios() {

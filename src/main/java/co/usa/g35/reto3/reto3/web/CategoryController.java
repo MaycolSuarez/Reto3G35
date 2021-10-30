@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.usa.g35.reto3.reto3.model.Category;
 import co.usa.g35.reto3.reto3.service.CategoryService;
+
 import java.util.List;
 import java.util.Optional;
 @RestController
@@ -20,6 +21,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE,
         RequestMethod.PUT })
 public class CategoryController {
+    
     @Autowired
     CategoryService categoryService;
 
