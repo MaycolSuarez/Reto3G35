@@ -23,4 +23,8 @@ public class ScoreRepository {
     public Score save(Score score) {
         return scoreCrudRepository.save(score);
     }
+
+    public void delete(Score category){
+        scoreCrudRepository.delete(category);
+    }
 }

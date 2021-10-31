@@ -38,4 +38,37 @@ public class AudienceService {
         }
 
     }
+
+    public Audience update(Audience audit) {
+
+        if (audit.getId() != null) {
+            Optional<Audience> consulta = auditorioRepository.getAudit(audit.getId());
+            if (!consulta.isEmpty()) {
+                if (audit.getName() != null) {
+                    consulta.get().setName(audit.getName());
+                }
+                if (audit.getOwner() != null)
+                    consulta.get().setOwner(audit.getOwner());
+                if (audit.getCapacity()!= null) {
+                    consulta.get().setCapacity(audit.getCapacity());
+                }
+                if (audit.getDescription()!= null) {
+                    consulta.get().setDescription(audit.getDescription());
+                }
+            }
+
+            return auditorioRepository.save(consulta.get());
+        }
+
+        return audit;
+    }
+
+    public boolean deleteAudit(int id){
+        Optional<Audience> consulta = auditorioRepository.getAudit(id);
+        if (!consulta.isEmpty()) {
+            auditorioRepository.delete(consulta.get());
+            return true;
+        }
+        return false;
+    }
 }

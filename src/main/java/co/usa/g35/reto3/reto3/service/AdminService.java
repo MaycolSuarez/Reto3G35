@@ -37,4 +37,34 @@ public class AdminService {
 
     }
 
+    public Admin update(Admin admin) {
+
+        if (admin.getIdAdmin() != null) {
+            Optional<Admin> consulta = adminRepository.getAdmin(admin.getIdAdmin());
+            if (!consulta.isEmpty()) {
+                if (admin.getName() != null) {
+                    consulta.get().setName(admin.getName());
+                }
+                if (admin.getEmail() != null)
+                    consulta.get().setEmail(admin.getEmail());
+                if (admin.getPassword()!= null) {
+                    consulta.get().setPassword(admin.getPassword());
+                }
+            }
+
+            return adminRepository.save(consulta.get());
+        }
+
+        return admin;
+    }
+
+    public boolean deleteAdmin(int id){
+        Optional<Admin> consulta = adminRepository.getAdmin(id);
+        if (!consulta.isEmpty()) {
+            adminRepository.delete(consulta.get());
+            return true;
+        }
+        return false;
+    }
+
 }
