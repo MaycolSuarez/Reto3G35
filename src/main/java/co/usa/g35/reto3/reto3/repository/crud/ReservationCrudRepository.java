@@ -17,7 +17,7 @@ CrudRepository<Reservation,Integer> {
     public List<Object[]> countTotalClientsByReservation();
 
     //query methods
-    public List<Reservation> findAllByStartDateAfterAndDevolutionDateBefore(Date startDate, Date DevolutionDate);
+    public List<Reservation> findAllByStartDateAfterAndStartDateBefore(Date startDate, Date DevolutionDate);
 
     public List<Reservation> findAllByStatus(String status);
 }

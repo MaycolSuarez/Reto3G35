@@ -2,6 +2,7 @@ package co.usa.g35.reto3.reto3.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import co.usa.g35.reto3.reto3.model.Client;
 import co.usa.g35.reto3.reto3.model.Reservation;
 import co.usa.g35.reto3.reto3.model.reportes.contClients;
 import co.usa.g35.reto3.reto3.repository.crud.ReservationCrudRepository;
@@ -36,7 +37,7 @@ public class ReservationRespository {
     }
 
     public List<Reservation> getReserFechas(Date start, Date Devolution){
-        return reservationCrudRepository.findAllByStartDateAfterAndDevolutionDateBefore(start, Devolution);
+        return reservationCrudRepository.findAllByStartDateAfterAndStartDateBefore(start, Devolution);
     }
 
     public List<contClients> getTopClients(){
@@ -44,7 +45,7 @@ public class ReservationRespository {
         List <Object[]> reporte=reservationCrudRepository.countTotalClientsByReservation();
         
         for (int i = 0; i < reporte.size(); i++) {
-            result.add(new contClients((Long)reporte.get(i)[1], (Reservation)reporte.get(i)[0]));
+            result.add(new contClients((Long)reporte.get(i)[1], (Client)reporte.get(i)[0]));
         }
 
         return result;
