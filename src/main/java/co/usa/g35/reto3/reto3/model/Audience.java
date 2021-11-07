@@ -58,7 +58,7 @@ public class Audience implements Serializable {
     //Relacion uno muchos
     @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "audience")
     //Ignore properties para evitar ciclos infinitos de llamados
-    @JsonIgnoreProperties("audience")
+    @JsonIgnoreProperties({"audience","message"})
     //atributo Reservations Vatiable de tipo List<Reservation> 
     private List<Reservation> reservations;
 

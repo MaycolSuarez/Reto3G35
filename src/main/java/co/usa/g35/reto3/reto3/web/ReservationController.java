@@ -66,8 +66,8 @@ public class ReservationController {
         return reservationService.getTopClients();
     }
 
-    @GetMapping("/report-dates/{startDate}/{devolDate}")
-    public List<Reservation> getReserFechas(@PathVariable("startDate") String start,@PathVariable("devolDate") String devol){
-        return reservationService.getReserFechas(start, devol);
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reservation> getReservasTiempo (@PathVariable("dateOne")String dateOne, @PathVariable("dateTwo")String dateTwo ){
+        return reservationService.getReserFechas(dateOne, dateTwo);
     }
 }
