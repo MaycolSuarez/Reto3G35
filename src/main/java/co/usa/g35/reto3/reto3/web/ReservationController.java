@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.usa.g35.reto3.reto3.model.Reservation;
+import co.usa.g35.reto3.reto3.model.reportes.contClients;
+import co.usa.g35.reto3.reto3.model.reportes.contReserStatus;
 import co.usa.g35.reto3.reto3.service.ReservationService;
 
 import java.util.List;
@@ -52,5 +54,20 @@ public class ReservationController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public Boolean deleteAudit(@PathVariable("id") int id) {
         return reservationService.deleteReservation(id);
+    }
+
+    @GetMapping("/report-status")
+    public contReserStatus getReserStatus(){
+        return reservationService.getReserStatus();
+    }
+
+    @GetMapping("/report-clients")
+    public List<contClients> getReportClients(){
+        return reservationService.getTopClients();
+    }
+
+    @GetMapping("/report-dates/{startDate}/{devolDate}")
+    public List<Reservation> getReserFechas(@PathVariable("startDate") String start,@PathVariable("devolDate") String devol){
+        return reservationService.getReserFechas(start, devol);
     }
 }

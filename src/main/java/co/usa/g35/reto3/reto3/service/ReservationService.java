@@ -1,4 +1,8 @@
 package co.usa.g35.reto3.reto3.service;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -6,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.usa.g35.reto3.reto3.model.Reservation;
+import co.usa.g35.reto3.reto3.model.reportes.contClients;
+import co.usa.g35.reto3.reto3.model.reportes.contReserStatus;
 import co.usa.g35.reto3.reto3.repository.ReservationRespository;
 
 @Service
@@ -66,5 +72,39 @@ public class ReservationService {
             return true;
         }
         return false;
+    }
+
+    public List<contClients> getTopClients(){
+        return reservationRespository.getTopClients();
+    }
+
+    public contReserStatus getReserStatus(){
+        List<Reservation> completed=reservationRespository.getReserByStatus("completed");
+        List<Reservation> cancelled=reservationRespository.getReserByStatus("cancelled");
+        contReserStatus reporteReser= new contReserStatus(completed.size(), cancelled.size());
+        
+        return reporteReser;
+    }
+
+    public List<Reservation> getReserFechas(String start, String Devolution){
+        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+
+        Date fechaIni=new Date();
+        Date fechaFin = new Date();
+
+        try {
+            fechaFin=format.parse(start);
+            fechaFin=format.parse(Devolution);
+        } catch (ParseException e) {
+            
+            e.printStackTrace();
+        }
+
+        if (fechaIni.before(fechaFin)) {
+            return reservationRespository.getReserFechas(fechaIni, fechaFin);
+        }else{
+            return new ArrayList<>();
+        }
+         
     }
 }
